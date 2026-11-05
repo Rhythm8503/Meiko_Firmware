@@ -8,10 +8,10 @@ void BLE_Management(void* pvParameters) {
     Serial.println("BLE Management Task Started");
 
     while(1) {
-        
+        Bluetooth_Handle();
+        vTaskDelay(pdMS_TO_TICKS(50));
     }
 }
-
 
 void Bluetooth_Handle() {
   if (newCommandReceived) {
@@ -33,6 +33,37 @@ void Bluetooth_Handle() {
 void handleCommand(char *cmd) {
   char response[32];
 
+  if (currentContext == MAIN) {
+    if (strcmp(cmd, "LED") == 0) {
+      currentContext = LED_MENU;
+      sendResponse("Type LED Mode or LED Brightness");
+    } else if (strcmp(cmd, "MOTION") == 0) {
+      currentContext = MOTION_MENU;
+      sendResponse("Type Motion Command");
+    } else {
+      sendResponse("Invalid command. Use LED, MOTION");
+    }
+  }
+
+  else if (currentContext == LED_MENU) {
+    if () { //Fill this in later 
+
+    }
+    else if (strcmp(cmd, "EXIT") == 0) {
+      currentContext = MAIN;
+      sendResponse("Main menu, Select LED or MOTION");
+    }
+  }
+
+  else if (currentContext == MOTION_MENU) {
+    if () { //Fill this in later 
+
+    }
+    else if (strcmp(cmd, "EXIT") == 0) {
+      currentContext = MAIN;
+      sendResponse("Main menu, Select LED or MOTION");
+    }
+  }
 }
 
 void sendResponse(const char *response) {

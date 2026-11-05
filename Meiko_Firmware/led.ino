@@ -5,11 +5,12 @@
 ***********************************************************************************************/
 
 void LED_Matrix(void* pvParameters) {
-    
-    Serial.println("LED Matrix Task Started");
 
+    Serial.println("LED Matrix Task Started");
+    
     while(1) {
         Visualizer();
+        vTaskDelay(pdMS_TO_TICKS(50));
     }
 }
 

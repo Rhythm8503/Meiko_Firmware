@@ -79,11 +79,43 @@ int num[samples] = {0, 3, 0, 3, 0, 3, 0, 3};
 int Intensity[xres] = { }; // initialize Frequency Intensity to zero
 int Displacement = 1;
 
+/* LED Variables */
+volatile uint8_t LED_Mode = 0;
+volatile uint8_t LED_Brightness = 0;
+
+/*****************************************************************************************
+            LED Modes | 0 = Default RED | 1 = Blue | 2 = Green | 3 = Rainbow
+******************************************************************************************/
+
+/* Motion Variables */
+volatile uint8_t Motion_Mode = 0;
+/*****************************************************************************************
+                Motion Modes | 0 = OFF | 1 = LED Pulse | 2 = LED Flash
+******************************************************************************************/
+
+/* Bluetooth Variables */
+char commandBuffer[32];         // Buffer for command parsing
+char originalCommand[32];       // Buffer to store original command for echo
+
 /***************************************************************************************** 
                               Boolean/Semaphore Definitions
 ******************************************************************************************/
 
+/* Bluetooth Booleans */
+bool deviceConnected = false;
+bool oldDeviceConnected = false;
+bool newCommandReceived = false;
 
 /***************************************************************************************** 
                               Enumeration  Definitions
 ******************************************************************************************/
+
+// Context enum for menu state [Bluetooth Communication]
+enum Context {
+  MAIN,
+  LED_MENU,
+  MOTION_MENU
+};
+
+// State variables
+Context currentContext = MAIN;
