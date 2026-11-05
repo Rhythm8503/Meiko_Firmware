@@ -10,3 +10,4 @@ This firmware was designed by Taheemuddin Ahmed (FFCosplays) for Su Yin Sama, th
 + Stereo Speaker setup through a custom designed circuit and PAM8403D Class D amplifier
 + AudioFFT LED Matrix, turning music into animations!
 
+# Version 0.1V Pre-Release
