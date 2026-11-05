@@ -1,5 +1,10 @@
+/***********************************************************************************************
+  FFCosplays & Su Yin Sama Meiko Bracelet and Collar    
+  Arduino Core: V3.2.1
+  ESP32-C3 Board
+***********************************************************************************************/
+
 void setup() {
-  // put your setup code here, to run once:
 
 }
 
