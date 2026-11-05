@@ -5,10 +5,14 @@
 ***********************************************************************************************/
 
 void setup() {
-
+  // Arduino required setup function
+  ESP32_Init();
+  FFT_Init();
+  ADXL345_Init();
+  BLE_init();
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+// Core Arduino loop function
 
 }

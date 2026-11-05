@@ -20,18 +20,19 @@
 #include <BLE2902.h>                // BLE Driver
 #include <arduinoFFT.h>             // Arduino FFT Library
 #include <FastLED.h>                // FastLED Library for LED Matrix
+#include <Adafruit_Sensor.h>        // Adafruit Sensor Library
+#include <Adafruit_ADXL345_U.h>     // Adafruit ADXL345 Accelerometer Library
 
 /* Pointers for Libraries */
 BLEServer *pServer = NULL;
 BLECharacteristic *pTxCharacteristic;
-
+Adafruit_ADXL345_Unified accel = Adafruit_ADXL345_Unified(12345);
 
 /***************************************************************************************** 
                                   FreeRTOS Thread Handles
 ******************************************************************************************/
 TaskHandle_t LEDTaskHandle;     // LED Process for LED Matrix
 TaskHandle_t ADXLTaskHandle;    // ADXL345 Process for Motion Detection
-TaskHandle_t FFT_TaskHandle;    // FFT Process for Audio Processing
 TaskHandle_t BLE_TaskHandle;    // BLE Process for Bluetooth Communication
 
 /***************************************************************************************** 

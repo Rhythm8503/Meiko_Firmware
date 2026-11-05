@@ -4,6 +4,15 @@
   ESP32-C3 Board
 ***********************************************************************************************/
 
+void BLE_Management(void* pvParameters) {
+    Serial.println("BLE Management Task Started");
+
+    while(1) {
+        
+    }
+}
+
+
 void Bluetooth_Handle() {
   if (newCommandReceived) {
     handleCommand(commandBuffer);
