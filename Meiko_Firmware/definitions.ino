@@ -137,5 +137,4 @@ Adafruit_ADXL345_Unified accel = Adafruit_ADXL345_Unified(12345);
 
 FastLED_NeoMatrix *matrix = new FastLED_NeoMatrix(leds, kMatrixWidth, kMatrixHeight,
   NEO_MATRIX_TOP        + NEO_MATRIX_LEFT +
-  NEO_MATRIX_ROWS       + NEO_MATRIX_ZIGZAG +
-  NEO_TILE_TOP + NEO_TILE_LEFT + NEO_TILE_ROWS);
+  NEO_MATRIX_ROWS       + NEO_MATRIX_ZIGZAG);

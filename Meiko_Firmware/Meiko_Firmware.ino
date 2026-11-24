@@ -22,5 +22,5 @@ Pins to Audio, FFT, LED and etc.
 Functions such as LED Matrix, Accelerometer and Bluetooth 
 
 */
-  
+
 }
