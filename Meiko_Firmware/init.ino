@@ -5,7 +5,7 @@
 ***********************************************************************************************/
 
 void FFT_Init() {
-    sampling_period_us = round(1000000*(1.0/samplingFrequency));
+    sampling_period_us = round(1000000 * (1.0 / SAMPLING_FREQ));
 }
 
 void ADXL345_Init() {
@@ -46,4 +46,15 @@ void BLE_init() {
     startTime = millis();
 
     Serial.println("BLE Initialized");
+}
+
+void LED_Matrix_Init() {
+  Serial.println("Initalizing LED Matrix");
+
+  FastLED.addLeds<CHIPSET, LED_PIN, COLOR_ORDER>(leds, NUM_LEDS).setCorrection(TypicalSMD5050);
+  FastLED.setMaxPowerInVoltsAndMilliamps(LED_VOLTS, MAX_MILLIAMPS);
+  FastLED.setBrightness(50);
+  FastLED.clear();
+
+  Serial.println("LED Matrix Initalized");
 }

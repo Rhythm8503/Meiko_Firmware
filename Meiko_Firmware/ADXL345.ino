@@ -19,5 +19,7 @@ void ADXL345_Task(void* pvParameters) {
         float z = event.acceleration.z;
 
         vTaskDelay(pdMS_TO_TICKS(50));
+
+        // Add code where when activated it can temporarily increase LED brightness
     }
 }
