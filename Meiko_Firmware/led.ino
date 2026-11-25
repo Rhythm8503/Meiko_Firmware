@@ -57,7 +57,10 @@ void Visualizer() {
 
       break;
 
-      case 8: //Rainbow
+      case 8: //Gakupo Purple
+      break;
+
+      case 9: //Rainbow
       break;
       }
 

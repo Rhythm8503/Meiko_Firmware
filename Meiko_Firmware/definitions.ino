@@ -40,9 +40,21 @@ TaskHandle_t BLE_TaskHandle;    // BLE Process for Bluetooth Communication
 #define RAD_TO_DEG(rad) ((rad) * 180.0 / PI)
 
 /* Bluetooth Server UUIDs */
+
+#define MEIKO_LEFT false
+#define MEIKO_RIGHT true
+
+#if MEIKO_RIGHT
 #define SERVICE_UUID "d1b789dc-2570-4e6d-bc6c-afa54acc21d3"               
 #define CHARACTERISTIC_UUID_RX "dd52c5e5-0caa-48d4-86b9-16170b56fd53"
 #define CHARACTERISTIC_UUID_TX "079081f4-3f8f-4806-bff6-4d5d1ac05148"
+#endif
+
+#if MEIKO_LEFT
+#define SERVICE_UUID "00a45b9e-e41b-4bbd-9f59-7a443755b1b6"               
+#define CHARACTERISTIC_UUID_RX "a6c2d53a-948c-4810-bbfe-e15434b01e7e"
+#define CHARACTERISTIC_UUID_TX "d2ba7fdc-07b0-49c9-9fce-7204b822b0d5"
+#endif
 
 /* FFT Definitions */
 #define SAMPLES         1024          // Must be a power of 2
@@ -53,12 +65,12 @@ TaskHandle_t BLE_TaskHandle;    // BLE Process for Bluetooth Communication
 #define COLOR_ORDER     GRB           // If colours look wrong, play with this
 #define CHIPSET         WS2812B       // LED strip type
 #define MAX_MILLIAMPS   3000          // Careful with the amount of power here if running off USB port
-#define NUM_BANDS       32            // To change this, you will need to change the bunch of if statements describing the mapping from bins to bands
-#define NOISE           600           // Used as a crude noise filter, values below this are ignored
+#define NUM_BANDS       19            // To change this, you will need to change the bunch of if statements describing the mapping from bins to bands
+#define NOISE           500           // Used as a crude noise filter, values below this are ignored
 
 /* Display Definitions */
-const uint8_t kMatrixWidth = 16;                          // Matrix width
-const uint8_t kMatrixHeight = 16;                         // Matrix height
+const uint8_t kMatrixWidth = 19;                          // Matrix width
+const uint8_t kMatrixHeight = 8;                          // Matrix height
 #define NUM_LEDS       (kMatrixWidth * kMatrixHeight)     // Total number of LEDs
 #define BAR_WIDTH      (kMatrixWidth  / (NUM_BANDS - 1))  // If width >= 8 light 1 LED width per bar, >= 16 light 2 LEDs width bar etc
 #define TOP            (kMatrixHeight - 0)                // Don't allow the bars to go offscreen
@@ -71,8 +83,8 @@ const uint8_t kMatrixHeight = 16;                         // Matrix height
 /* FFT Variables */
 unsigned int sampling_period_us;
 byte peak[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};              // The length of these arrays must be >= NUM_BANDS
-int oldBarHeights[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-int bandValues[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+int oldBarHeights[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+int bandValues[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 double vReal[SAMPLES];
 double vImag[SAMPLES];
@@ -111,6 +123,9 @@ char originalCommand[32];       // Buffer to store original command for echo
 bool deviceConnected = false;
 bool oldDeviceConnected = false;
 bool newCommandReceived = false;
+
+/* LED Accelerometer declarations */
+bool ACCEL_ANIM = false;
 
 /***************************************************************************************** 
                               Enumeration  Definitions

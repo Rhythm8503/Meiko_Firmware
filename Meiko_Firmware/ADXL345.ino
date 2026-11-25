@@ -23,3 +23,11 @@ void ADXL345_Task(void* pvParameters) {
         // Add code where when activated it can temporarily increase LED brightness
     }
 }
+
+void LED_Pulse() {
+    
+}
+
+void LED_Flash() {
+
+}

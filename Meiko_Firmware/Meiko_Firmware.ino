@@ -7,9 +7,16 @@
 void setup() {
   // Arduino required setup function
   ESP32_Init();
+  vTaskDelay(pdMS_TO_TICKS(50)); //RTOS Function Initalization
+
   FFT_Init();
   ADXL345_Init();
   BLE_init();
+
+  vTaskDelay(pdMS_TO_TICKS(50)); //BLE Activation -> Minor current pulse
+  
+  LED_Matrix_Init() 
+  vTaskDelay(pdMS_TO_TICKS(50)); //LED Activation -> Delay
 }
 
 void loop() {
